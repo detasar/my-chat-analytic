@@ -15,10 +15,10 @@ This repository implements:
 3. **Asynchronous** logging of conversation data (role, text, sentiment, intent) to a database (SQLite in this example).
 4. A Python packaging structure including `setup.py`, allowing easy installation and distribution.
 
-**Tasks** covered:
+**Actions** covered:
 
-- **Task 1**: Build a codebase that reads conversation data, performs sentiment & intent detection with zero-shot learning, and logs results in a DB.
-- **Task 2**: Propose quick solutions to adapt the system into a more conversational AI approach (while keeping the BART model the same).
+- **Action 1**: Build a codebase that reads conversation data, performs sentiment & intent detection with zero-shot learning, and logs results in a DB.
+- **Action 2**: Propose quick solutions to adapt the system into a more conversational AI approach (while keeping the BART model the same).
 
 ---
 
