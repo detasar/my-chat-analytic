@@ -23,7 +23,24 @@ This repository implements:
 ---
 
 ## Project Structure
-my-chat-analytic/ ├── README.md # This README file ├── requirements.txt # Required dependencies ├── setup.py # Makes the project installable as a Python package ├── config │ └── model_config.ini # Model & DB configuration ├── data │ └── conversation.json # Simulated conversation data ├── resources │ └── README.md # Additional notes about the model └── src ├── init.py ├── db.py # Async DB logic (SQLAlchemy) ├── logger.py # Async logger to insert logs into DB ├── sentiment_intent_analyzer.py # Zero-shot pipeline logic └── main.py # Main script that orchestrates the flow
+```bash
+my-chat-analytic/
+├── README.md                      # This README file
+├── requirements.txt               # Required dependencies
+├── setup.py                       # Makes the project installable as a Python package
+├── config
+│   └── model_config.ini           # Model & DB configuration
+├── data
+│   └── conversation.json          # Simulated conversation data
+├── resources
+│   └── README.md                  # Additional notes about the model
+└── src
+    ├── __init__.py
+    ├── db.py                      # Async DB logic (SQLAlchemy)
+    ├── logger.py                  # Async logger to insert logs into DB
+    ├── sentiment_intent_analyzer.py   # Zero-shot pipeline logic
+    └── main.py                    # Main script that orchestrates the flow
+```
 
 
 ### How It Works
@@ -71,4 +88,22 @@ Conversation analysis complete and logged to DB!
 SELECT * FROM logs;
 ```
 
+## Quick Solutions for a More Conversational AI
 
+1. Context Window: Pass not just the current utterance but also the previous 1-3 messages as a single text block into the zero-shot classifier. This helps the model interpret context more accurately (though BART MNLI is not fine-tuned for multi-turn).
+2. State Machine / Rule-based enhancements: Maintain a simple state machine or set of rules that, if the user’s intent is ask_price, you trigger a “pricing” flow. If the user’s intent is upgrade, you trigger an “upgrade plan” flow, etc.
+3. Session-based Memory: Maintain a session ID for each user to accumulate conversation history. Even if the zero-shot model is stateless, you can keep relevant info in memory or a database and pass partial context on each inference.
+4. Hybrid Approach: Combine zero-shot results with keyword or regex triggers to catch domain-specific phrases (e.g., “iPhone 14”, “change plan”). This can override or confirm the zero-shot classification.
+
+## Contributing
+
+1. Fork the repository.
+2. Create a new branch (git checkout -b feature/awesome-feature).
+3. Commit your changes (git commit -m "Add awesome feature").
+4. Push to the branch (git push origin feature/awesome-feature).
+5. Open a Pull Request.
+
+## License
+MIT License
+
+Feel free to adapt or extend the code as needed.
