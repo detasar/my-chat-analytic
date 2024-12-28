@@ -40,9 +40,9 @@ my-chat-analytic/
 │   ├── logger.py
 │   ├── sentiment_intent_analyzer.py
 │   ├── main.py
-│   └── **conversational_manager.py**   <-- (Advanced conversation logic)
-└── **notebooks**
-    └── **task2_conversational_demo.ipynb**  <-- (Jupyter Notebook)
+│   └── conversational_manager.py   <-- (Advanced conversation logic)
+└── notebooks
+    └── task2_conversational_demo.ipynb  <-- (Jupyter Notebook)
 ```
 
 
