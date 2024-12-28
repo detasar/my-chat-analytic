@@ -25,21 +25,24 @@ This repository implements:
 ## Project Structure
 ```bash
 my-chat-analytic/
-├── README.md                      # This README file
-├── requirements.txt               # Required dependencies
-├── setup.py                       # Makes the project installable as a Python package
+├── README.md
+├── requirements.txt
+├── setup.py
 ├── config
-│   └── model_config.ini           # Model & DB configuration
+│   └── model_config.ini
 ├── data
-│   └── conversation.json          # Simulated conversation data
+│   └── conversation.json
 ├── resources
-│   └── README.md                  # Additional notes about the model
-└── src
-    ├── __init__.py
-    ├── db.py                      # Async DB logic (SQLAlchemy)
-    ├── logger.py                  # Async logger to insert logs into DB
-    ├── sentiment_intent_analyzer.py   # Zero-shot pipeline logic
-    └── main.py                    # Main script that orchestrates the flow
+│   └── README.md
+├── src
+│   ├── __init__.py
+│   ├── db.py
+│   ├── logger.py
+│   ├── sentiment_intent_analyzer.py
+│   ├── main.py
+│   └── **conversational_manager.py**   <-- (Advanced conversation logic)
+└── **notebooks**
+    └── **task2_conversational_demo.ipynb**  <-- (Jupyter Notebook)
 ```
 
 
