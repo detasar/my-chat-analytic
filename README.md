@@ -42,7 +42,8 @@ my-chat-analytic/
 │   ├── main.py
 │   └── conversational_manager.py   <-- (Advanced conversation logic)
 └── notebooks
-    └── task2_conversational_demo.ipynb  <-- (Jupyter Notebook)
+    ├── task2_conversational_demo.ipynb  <-- (Jupyter Notebook)
+    └── proof_of_execution_document_for_task1.ipynb  <-- (Jupyter Notebook)
 ```
 
 
@@ -58,6 +59,7 @@ my-chat-analytic/
    - **Intent**: Zero-shot classification among specified custom labels (e.g. `upgrade`, `ask_price`, `buy`, etc.).
 4. **`logger.py`** asynchronously logs each record (role, text, sentiment, intent) to a database table named `logs`.
 5. Console output indicates completion, and a `logs.db` file is created locally (if SQLite is used).
+6. Also for a colab run as a proof of execution you can check `notebooks/proof_of_execution_document_for_task1.ipynb`
 
 ---
 
