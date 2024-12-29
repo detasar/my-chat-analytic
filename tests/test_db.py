@@ -4,6 +4,7 @@ import asyncio
 import pytest
 from src.db import Database
 
+
 @pytest.mark.asyncio
 async def test_database_init_and_insert(tmp_path):
     """
