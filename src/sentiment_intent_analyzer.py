@@ -25,21 +25,14 @@ class ZeroShotAnalyzer:
     def predict_sentiment(self, text: str) -> str:
         """
         Predict sentiment (positive, negative, neutral) using zero-shot classification.
-
-        :param text: The input text to classify
-        :return: The predicted sentiment label (highest-scored)
         """
         candidate_labels = ["positive", "negative", "neutral"]
         result = self.classifier(text, candidate_labels)
-        # result["labels"] is sorted by descending score
-        return result["labels"][0]
+        return result["labels"][0]  # Highest-scored label
 
     def predict_intent(self, text: str) -> str:
         """
         Predict intent from a custom set of candidate labels using zero-shot classification.
-
-        :param text: The input text
-        :return: The predicted intent label
         """
         candidate_labels = [
             "upgrade",
@@ -51,15 +44,11 @@ class ZeroShotAnalyzer:
             "thank_you"
         ]
         result = self.classifier(text, candidate_labels)
-        return result["labels"][0]
+        return result["labels"][0]  # Highest-scored label
 
     def analyze_message(self, role: str, text: str) -> Dict[str, str]:
         """
         Analyze a single message for sentiment and intent.
-
-        :param role: The role of the speaker (agent or customer).
-        :param text: The utterance text to analyze.
-        :return: A dict with the role, text, sentiment, and intent.
         """
         sentiment = self.predict_sentiment(text)
         intent = self.predict_intent(text)
