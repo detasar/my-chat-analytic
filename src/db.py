@@ -51,11 +51,6 @@ class Database:
     ) -> None:
         """
         Inserts a single record into the logs table.
-
-        :param role: The speaker role (e.g., 'agent' or 'customer')
-        :param text: The message text
-        :param sentiment: The predicted sentiment ('positive', 'negative', 'neutral')
-        :param intent: The predicted intent (e.g., 'upgrade', 'ask_price', etc.)
         """
         async with self.async_session() as session:
             stmt = LogsTable.insert().values(
