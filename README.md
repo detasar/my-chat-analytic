@@ -42,8 +42,14 @@ my-chat-analytic/
 │   ├── main.py
 │   └── conversational_manager.py   <-- (Advanced conversation logic)
 └── notebooks
-    ├── task2_conversational_demo.ipynb  <-- (Jupyter Notebook)
-    └── proof_of_execution_document_for_task1.ipynb  <-- (Jupyter Notebook)
+│   ├── task2_conversational_demo.ipynb  <-- (Jupyter Notebook)
+│   └── proof_of_execution_document_for_task1.ipynb  <-- (Jupyter Notebook)
+└── tests
+    ├── __init__.py
+    ├── test_db.py
+    ├── test_logger.py
+    ├── test_sentiment_intent_analyzer.py
+    └── test_conversational_manager.py
 ```
 
 
@@ -103,20 +109,50 @@ jupyter notebook
 3. Run the cells in order. The notebook will demonstrate how we can add a simple context window, maintain session data, and classify each message with a more “conversational” approach (still using facebook/bart-large-mnli zero-shot classification).
 
 
-## Task 2: Quick Solutions (Recap)
-1. Context Window
-Combine the last N user or agent messages with the current one for classification, providing a short conversation history.
+#### Task 2: Quick Solutions (Recap)
+   1. Context Window
+   Combine the last N user or agent messages with the current one for classification, providing a short conversation history.
 
-2. State Machine / Rule-based
-A simple state machine or set of rules can guide the conversation flow based on the zero-shot-detected intent.
+   2. State Machine / Rule-based
+   A simple state machine or set of rules can guide the conversation flow based on the zero-shot-detected intent.
 
-3. Session-based Memory
-Track which user session is active and store relevant context or conversation history in memory or a DB.
+   3. Session-based Memory
+   Track which user session is active and store relevant context or conversation history in memory or a DB.
 
-4. Keyword/Rule Hybrid
-If zero-shot occasionally misfires, a small library of domain-specific keywords can confirm or override intent predictions.
+   4. Keyword/Rule Hybrid
+   If zero-shot occasionally misfires, a small library of domain-specific keywords can confirm or override intent predictions.
 
-All of these are optional expansions beyond the core zero-shot classification approach. The notebook in notebooks/task2_conversational_demo.ipynb showcases how to apply them in code.
+   All of these are optional expansions beyond the core zero-shot classification approach. The notebook in notebooks/task2_conversational_demo.ipynb showcases how to apply them in code.
+
+## Running the Tests
+
+This project includes unit tests in the `tests/` directory. We use **pytest** for test discovery and execution. To run all tests, follow these steps:
+
+1. **Install** the required testing dependencies:
+```bash
+pip install pytest
+```
+2. Run Tests from the root project folder:
+```bash
+pytest tests
+```
+This will automatically discover all test files (named test_*.py) in the tests/ directory and run them.
+## Test Coverage (Optional)
+If you want to measure code coverage, you can install the coverage tool:
+
+```bash
+pip install coverage
+coverage run -m pytest tests
+coverage report -m
+```
+This will show you how much of your code is exercised by the tests.
+
+Test Files:
+
+* `test_db.py`: Tests the async DB initialization and insertion logic.
+* `test_logger.py`: Validates the logging layer to ensure correct DB insert calls.
+* `test_sentiment_intent_analyzer.py`: Checks sentiment and intent predictions using a mock pipeline or real pipeline in a controlled way.
+* `test_conversational_manager.py`: Tests the context window approach in a multi-turn scenario.
 
 ## Contributing
 
