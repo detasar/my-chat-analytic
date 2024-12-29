@@ -77,6 +77,7 @@ pip install dist/my_chat_analytic-0.1.0-py3-none-any.whl
 ```
 
 ## Usage
+### TASK 1
 1. Ensure you have your model_config.ini in config/ and your conversation data in data/conversation.json.
 2. Run the application:
 ```bash
@@ -90,13 +91,30 @@ Conversation analysis complete and logged to DB!
 ```sql
 SELECT * FROM logs;
 ```
+### TASK 2
 
-## Quick Solutions for a More Conversational AI
+1. Start Jupyter:
+```bash
+jupyter notebook
+```
+2. Open notebooks/task2_conversational_demo.ipynb.
+3. Run the cells in order. The notebook will demonstrate how we can add a simple context window, maintain session data, and classify each message with a more “conversational” approach (still using facebook/bart-large-mnli zero-shot classification).
 
-1. Context Window: Pass not just the current utterance but also the previous 1-3 messages as a single text block into the zero-shot classifier. This helps the model interpret context more accurately (though BART MNLI is not fine-tuned for multi-turn).
-2. State Machine / Rule-based enhancements: Maintain a simple state machine or set of rules that, if the user’s intent is ask_price, you trigger a “pricing” flow. If the user’s intent is upgrade, you trigger an “upgrade plan” flow, etc.
-3. Session-based Memory: Maintain a session ID for each user to accumulate conversation history. Even if the zero-shot model is stateless, you can keep relevant info in memory or a database and pass partial context on each inference.
-4. Hybrid Approach: Combine zero-shot results with keyword or regex triggers to catch domain-specific phrases (e.g., “iPhone 14”, “change plan”). This can override or confirm the zero-shot classification.
+
+## Task 2: Quick Solutions (Recap)
+1. Context Window
+Combine the last N user or agent messages with the current one for classification, providing a short conversation history.
+
+2. State Machine / Rule-based
+A simple state machine or set of rules can guide the conversation flow based on the zero-shot-detected intent.
+
+3. Session-based Memory
+Track which user session is active and store relevant context or conversation history in memory or a DB.
+
+4. Keyword/Rule Hybrid
+If zero-shot occasionally misfires, a small library of domain-specific keywords can confirm or override intent predictions.
+
+All of these are optional expansions beyond the core zero-shot classification approach. The notebook in notebooks/task2_conversational_demo.ipynb showcases how to apply them in code.
 
 ## Contributing
 
